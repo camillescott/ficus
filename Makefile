@@ -12,12 +12,12 @@ test: FORCE
 publish: FORCE
 		python setup.py sdist upload
 
-gh-pages:
-		cd doc; make clean html
-		touch doc/_build/html/.nojekyll
-		git add doc/
-		git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`"
-		git subtree push --prefix doc/_build/html origin gh-pages
+#gh-pages:
+#		cd doc; make clean html
+#		touch doc/_build/html/.nojekyll
+#		git add doc/
+#		git commit -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`"
+#		git subtree push --prefix doc/_build/html origin gh-pages
 
 
 clean: FORCE
