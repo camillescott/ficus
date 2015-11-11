@@ -9,7 +9,7 @@ import sys
 class FigureManager(object):
 
     def __init__(self, filename=None, show=False, 
-                 nrows=1, ncols=1, figsize=(18,12), tight_layout=True,
+                 nrows=1, ncols=1, figsize=(18,12), tight_layout=False,
                  **fig_kwds):
 
         self.fig, self.ax = plt.subplots(nrows=nrows, ncols=ncols,
