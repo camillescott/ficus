@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-import matplotlib as mpl
-mpl.use('Agg')
 from matplotlib import axes
 from matplotlib import figure
 
