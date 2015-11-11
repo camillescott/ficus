@@ -1,17 +1,15 @@
 #!/usr/bin/env python
 
-from ficus import set_no_xserver
-set_no_xserver()
-from ficus import FigureManager
+import matplotlib as mpl
+mpl.use('Agg')
+from matplotlib import axes
+from matplotlib import figure
 
 import os
 from unittest import TestCase
 
-from matplotlib import axes
-from matplotlib import figure
-
 from utils import TemporaryDirectory, Move, TestData, touch, TemporaryFile
-
+from ficus import FigureManager
 
 class TestFigureManager(TestCase):
 
