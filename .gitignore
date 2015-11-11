@@ -1,0 +1,11 @@
+*.pyc
+
+*.swp
+*.swo
+
+build/
+dist/
+distribute-*.tar.gz
+distribute-*.egg
+ficus.egg-info/
+*~
