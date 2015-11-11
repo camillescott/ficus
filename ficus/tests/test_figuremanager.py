@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+from ficus import set_no_xserver
+set_no_xserver()
+from ficus import FigureManager
+
 import os
 from unittest import TestCase
 
@@ -7,7 +11,7 @@ from matplotlib import axes
 from matplotlib import figure
 
 from utils import TemporaryDirectory, Move, TestData, touch, TemporaryFile
-from ficus.manager import FigureManager
+
 
 class TestFigureManager(TestCase):
 
