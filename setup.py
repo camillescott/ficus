@@ -12,8 +12,8 @@ finally:
 
 from glob import glob
 
-if sys.version_info < (2, 4):
-    print >> sys.stderr, "ERROR: ficus requires python 2.4 or greater"
+if sys.version_info < (2, 6):
+    print >> sys.stderr, "ERROR: ficus requires python 2.6 or greater"
     sys.exit()
 
 import ficus
@@ -31,9 +31,9 @@ def main():
             test_suite = 'nose.collector',
             tests_require = ['nose'],
             packages = ['ficus'],
-            scripts = glob('bin/*'),
-            install_requires = ['nose', 
-                                'pandas',
+            install_requires = ['nose',
+                                'sphinxcontrib-napoleon',
+                                'Sphinx',
                                 'matplotlib',
                                 'nose-capturestderr'],
             include_package_data = True,
