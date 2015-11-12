@@ -1,6 +1,10 @@
 ficus
 =====
 
+.. image:: https://drone.io/github.com/camillescott/ficus/status.png
+    :align: right
+    :target: https://drone.io/github.com/camillescott/ficus/latest
+
 About
 -----
 
@@ -43,6 +47,4 @@ In fact, you can pass any keyword arguments you'd like to `subplots`::
     with FigureManager(filename='myplot.png', show=True, figsize=(12,8)) as (fig, ax):
         ax.plot(X, Y)
 
----
-
-[![Build Status](https://drone.io/github.com/camillescott/ficus/status.png)](https://drone.io/github.com/camillescott/ficus/latest)
+Take a look at the `examples <example.ipynb>`__ to see it being used in a jupyter notebook.
