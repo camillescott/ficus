@@ -21,17 +21,10 @@ class TestFigureManager(TestCase):
         with TemporaryDirectory() as td:
             with TemporaryFile(td) as filename:
         
-                with FigureManager(filename=filename) as (fig, ax):
+                with FigureManager(filename=filename + '.pdf') as (fig, ax):
                     ax.plot(xrange(10), xrange(10))
                 
-                self.assertTrue(os.path.isfile(filename + '.png'))
-
-                with FigureManager(filename=filename+'.svg') as (fig, ax):
-                    ax.plot(xrange(10), xrange(10))
-                
-                self.assertTrue(os.path.isfile(filename + '.svg'))
-
-       
+                self.assertTrue(os.path.isfile(filename + '.pdf'))
 
     def test_subplots_nrows(self):
         '''Test that FigureManager generates multiple subplots with nrows.
