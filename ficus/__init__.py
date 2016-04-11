@@ -1,5 +1,4 @@
 #!/usr/bin/env python
 __version__ = '0.1'
 
-from manager import FigureManager
-
+from ficus.manager import FigureManager

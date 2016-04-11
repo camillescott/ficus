@@ -22,23 +22,21 @@ class TestFigureManager(TestCase):
             with TemporaryFile(td) as filename:
         
                 with FigureManager(filename=filename) as (fig, ax):
-                    ax.plot(xrange(10), xrange(10))
+                    ax.plot(range(10), range(10))
                 
                 self.assertTrue(os.path.isfile(filename + '.png'))
 
                 with FigureManager(filename=filename+'.svg') as (fig, ax):
-                    ax.plot(xrange(10), xrange(10))
+                    ax.plot(range(10), range(10))
                 
                 self.assertTrue(os.path.isfile(filename + '.svg'))
-
-       
 
     def test_subplots_nrows(self):
         '''Test that FigureManager generates multiple subplots with nrows.
         '''
         
         with FigureManager(nrows=3) as (fig, ax):
-            self.assertEquals(len(ax), 3)
+            self.assertEqual(len(ax), 3)
             self.assertIs(type(fig), figure.Figure)
             for axis in ax:
                 self.assertIsInstance(axis, axes.Axes)
@@ -48,7 +46,7 @@ class TestFigureManager(TestCase):
         '''
         
         with FigureManager(ncols=3) as (fig, ax):
-            self.assertEquals(len(ax), 3)
+            self.assertEqual(len(ax), 3)
             self.assertIsInstance(fig, figure.Figure)
             for axis in ax:
                 self.assertIsInstance(axis, axes.Axes)
@@ -59,8 +57,8 @@ class TestFigureManager(TestCase):
         '''
         
         with FigureManager(nrows=3, ncols=3) as (fig, ax):
-            self.assertEquals(len(ax), 3)
-            self.assertEquals(len(ax[0]), 3)
+            self.assertEqual(len(ax), 3)
+            self.assertEqual(len(ax[0]), 3)
             self.assertIsInstance(fig, figure.Figure)
             for axrow in ax:
                 for axis in axrow:
@@ -73,7 +71,7 @@ class TestFigureManager(TestCase):
             with TemporaryFile(td) as filename:
 
                 # now we test the manager
-                with self.assertRaisesRegexp(RuntimeError, 'TEST'):
+                with self.assertRaisesRegex(RuntimeError, 'TEST'):
                     with FigureManager(filename=filename) as (fig, ax):
                         raise RuntimeError('TEST')
                 self.assertFalse(os.path.isfile(filename),
