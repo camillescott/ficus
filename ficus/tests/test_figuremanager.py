@@ -65,7 +65,11 @@ class TestFigureManager(TestCase):
             with TemporaryFile(td) as filename:
 
                 # now we test the manager
-                with self.assertRaisesRegex(RuntimeError, 'TEST'):
+                try:
+                    rregexp = self.assertRaisesRegex
+                except AttributeError:
+                    rregexp = self.assertRaisesRegexp
+                with rregexp(RuntimeError, 'TEST'):
                     with FigureManager(filename=filename) as (fig, ax):
                         raise RuntimeError('TEST')
                 self.assertFalse(os.path.isfile(filename),
