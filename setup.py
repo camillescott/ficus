@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, platform
+import sys, platform, os
 
 try:
     from setuptools import *
@@ -16,13 +16,13 @@ if sys.version_info < (2, 6):
     print >> sys.stderr, "ERROR: ficus requires python 2.6 or greater"
     sys.exit()
 
-import ficus
+__version__ = open(os.path.join('ficus', 'VERSION')).read().strip()
 
 cmdclass = {}
 
 def main():
     setup(  name = 'ficus',
-            version = ficus.__version__,
+            version = __version__,
             description = 'context managers for matplotlib',
             url = 'https://github.com/camillescott/ficus',
             author = 'Camille Scott',
