@@ -31,9 +31,9 @@ def main():
             test_suite = 'nose.collector',
             tests_require = ['nose'],
             packages = ['ficus'],
-            install_requires = ['nose',
-                                'matplotlib>=1.0',
-                                'nose-capturestderr'],
+            install_requires = ['nose>=1.3.4',
+                                'matplotlib>=1.4',
+                                'nose-capturestderr>=1.0'],
             include_package_data = True,
             zip_safe = False,
             cmdclass = cmdclass  )
