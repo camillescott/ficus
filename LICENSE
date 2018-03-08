@@ -1,6 +1,6 @@
 ficus -- a context manager for matplotlib
 
-Copyright (C) 2015 Camille Scott
+Copyright (C) 2015-2018 Camille Scott
 <camille.scott.w@gmail.com>
 
 All rights reserved.

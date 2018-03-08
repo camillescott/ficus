@@ -31,8 +31,7 @@ def main():
             tests_require = ['pytest', 'pytest-runner'],
             packages = ['ficus'],
             setup_requires = ['pytest-runner', 'pytest'],
-            install_requires = ['nose>=1.3.4',
-                                'matplotlib>=1.4'],
+            install_requires = ['matplotlib>=1.4'],
             include_package_data = True,
             zip_safe = False,
             cmdclass = cmdclass  )
