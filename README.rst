@@ -1,9 +1,9 @@
 ficus
 =====
 
-.. image:: https://drone.io/github.com/camillescott/ficus/status.png
+.. image:: https://travis-ci.org/camillescott/ficus.svg?branch=master
     :align: right
-    :target: https://drone.io/github.com/camillescott/ficus/latest
+    :target: https://travis-ci.org/camillescott/ficus
 
 About
 -----
