@@ -22,33 +22,6 @@ def touch(filename):
     _os.chmod(filename, stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 
 
-class TestData(object):
-
-    def __init__(self, filename, dest_dir):
-        self.filepath = None
-        try:
-            self.filepath = resource_filename(Requirement.parse("dammit"), 
-                                              "dammit/tests/test-data/"     + filename)
-        except ResolutionError:
-            pass
-        if not self.filepath or not _os.path.isfile(self.filepath):
-            self.filepath = _os.path.join(_os.path.dirname(__file__), 
-                                          'test-data', filename)
-        shutil.copy(self.filepath, dest_dir)
-        self.filepath = _os.path.join(dest_dir, filename)
-    
-    def __enter__(self):
-        return self.filepath
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        try:
-            _os.remove(self.filepath)
-        except OSError:
-            pass
-        if exc_type:
-            return False
-
-
 class TemporaryFile(object):
 
     def __init__(self, directory):

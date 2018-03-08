@@ -6,14 +6,10 @@ from matplotlib import figure
 import os
 from unittest import TestCase
 
-from utils import TemporaryDirectory, Move, TestData, touch, TemporaryFile
+from utils import TemporaryDirectory, Move, touch, TemporaryFile
 from ficus import FigureManager
 
 class TestFigureManager(TestCase):
-
-    @classmethod
-    def setup_class(cls):
-        pass
 
     def test_save(self):
         '''Test that FigureManager saves a plot.
@@ -23,27 +19,27 @@ class TestFigureManager(TestCase):
                 with FigureManager(filename=filename + '.pdf') as (fig, ax):
                     ax.plot(range(10), range(10))
                 
-                self.assertTrue(os.path.isfile(filename + '.pdf'))
+                assert os.path.isfile(filename + '.pdf')
 
     def test_subplots_nrows(self):
         '''Test that FigureManager generates multiple subplots with nrows.
         '''
         
         with FigureManager(nrows=3) as (fig, ax):
-            self.assertEqual(len(ax), 3)
-            self.assertIs(type(fig), figure.Figure)
+            assert len(ax) == 3
+            assert type(fig) is figure.Figure
             for axis in ax:
-                self.assertIsInstance(axis, axes.Axes)
+                assert isinstance(axis, axes.Axes)
 
     def test_subplots_ncols(self):
         '''Test that FigureManager generates multiple subplots with ncols.
         '''
         
         with FigureManager(ncols=3) as (fig, ax):
-            self.assertEqual(len(ax), 3)
-            self.assertIsInstance(fig, figure.Figure)
+            assert len(ax) == 3
+            assert isinstance(fig, figure.Figure)
             for axis in ax:
-                self.assertIsInstance(axis, axes.Axes)
+                assert isinstance(axis, axes.Axes)
 
     def test_subplots_nrows_ncols(self):
         '''Test that FigureManager generates multiple subplots with nrows and
@@ -51,12 +47,12 @@ class TestFigureManager(TestCase):
         '''
         
         with FigureManager(nrows=3, ncols=3) as (fig, ax):
-            self.assertEqual(len(ax), 3)
-            self.assertEqual(len(ax[0]), 3)
-            self.assertIsInstance(fig, figure.Figure)
+            assert len(ax) == 3
+            assert len(ax[0]) == 3
+            assert isinstance(fig, figure.Figure)
             for axrow in ax:
                 for axis in axrow:
-                    self.assertIsInstance(axis, axes.Axes)
+                    assert isinstance(axis, axes.Axes)
 
     def test_exception(self):
         '''Test that FigureManager handles internal exceptions properly.
@@ -72,5 +68,4 @@ class TestFigureManager(TestCase):
                 with rregexp(RuntimeError, 'TEST'):
                     with FigureManager(filename=filename) as (fig, ax):
                         raise RuntimeError('TEST')
-                self.assertFalse(os.path.isfile(filename),
-                                 msg='Should not have saved a file.')
+                assert not os.path.isfile(filename), 'Should not have saved a file.'
