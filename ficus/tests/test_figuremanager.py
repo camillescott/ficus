@@ -1,25 +1,24 @@
-#!/usr/bin/env python
-
 from matplotlib import axes
 from matplotlib import figure
 
 import os
-from unittest import TestCase
+import pytest
 
-from utils import TemporaryDirectory, Move, touch, TemporaryFile
 from ficus import FigureManager
 
-class TestFigureManager(TestCase):
 
-    def test_save(self):
+@pytest.mark.usefixtures("use_agg")
+class TestFigureManager(object):
+
+    def test_save(self, tmpdir):
         '''Test that FigureManager saves a plot.
         '''
-        with TemporaryDirectory() as td:
-            with TemporaryFile(td) as filename:
-                with FigureManager(filename=filename + '.pdf') as (fig, ax):
-                    ax.plot(range(10), range(10))
+        with tmpdir.as_cwd():
+            filename = str(tmpdir.join('test'))
+            with FigureManager(filename=filename + '.pdf') as (fig, ax):
+                ax.plot(range(10), range(10))
                 
-                assert os.path.isfile(filename + '.pdf')
+            assert os.path.isfile(filename + '.pdf')
 
     def test_subplots_nrows(self):
         '''Test that FigureManager generates multiple subplots with nrows.
@@ -54,18 +53,14 @@ class TestFigureManager(TestCase):
                 for axis in axrow:
                     assert isinstance(axis, axes.Axes)
 
-    def test_exception(self):
+    def test_exception(self, tmpdir):
         '''Test that FigureManager handles internal exceptions properly.
         '''
-        with TemporaryDirectory() as td:
-            with TemporaryFile(td) as filename:
+        with tmpdir.as_cwd():
+            filename = str(tmpdir.join('test'))
 
-                # now we test the manager
-                try:
-                    rregexp = self.assertRaisesRegex
-                except AttributeError:
-                    rregexp = self.assertRaisesRegexp
-                with rregexp(RuntimeError, 'TEST'):
-                    with FigureManager(filename=filename) as (fig, ax):
-                        raise RuntimeError('TEST')
-                assert not os.path.isfile(filename), 'Should not have saved a file.'
+            with pytest.raises(RuntimeError,
+                               message='Should raise RuntimeError'):
+                with FigureManager(filename=filename) as (fig, ax):
+                    raise RuntimeError('TEST')
+            assert not os.path.isfile(filename), 'Should not have saved a file.'
