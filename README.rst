@@ -55,4 +55,4 @@ In fact, you can pass any keyword arguments you'd like to `subplots`:
     with FigureManager(filename='myplot.png', show=True, figsize=(12,8)) as (fig, ax):
         ax.plot(X, Y)
 
-Take a look at the `examples <example.ipynb>`__ to see it being used in a jupyter notebook.
+Take a look at the `examples <Examples.ipynb>`__ to see it being used in a jupyter notebook.

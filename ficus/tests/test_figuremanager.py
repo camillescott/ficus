@@ -60,7 +60,7 @@ class TestFigureManager(object):
             filename = str(tmpdir.join('test'))
 
             with pytest.raises(RuntimeError,
-                               message='Should raise RuntimeError'):
+                               match='TEST'):
                 with FigureManager(filename=filename) as (fig, ax):
                     raise RuntimeError('TEST')
             assert not os.path.isfile(filename), 'Should not have saved a file.'

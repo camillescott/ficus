@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-from os.path import join, dirname
-rel_path = dirname(__file__)
-__version__ = open(join(rel_path, 'VERSION')).read().strip()
+__version__ = '0.6'
 
-from ficus.manager import FigureManager
+from .manager import FigureManager, SubFigureManager

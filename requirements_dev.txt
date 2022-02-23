@@ -1,0 +1,8 @@
+matplotlib>=2.0
+
+bump2version>=0.5.11
+pytest>=4.6
+tox>=3.14
+coverage>=4.5
+Sphinx>=1.8.5
+twine>=1.14.0
